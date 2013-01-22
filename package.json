@@ -18,7 +18,7 @@
     "grunt": ">= 0.3.x",
     "buster": ">= 0.6.x",
     "grunt-buster": ">= 0.1.x",
-    "grunt-mdlldr": ">= 0.1.x"
+    "grunt-mdlldr": ">= 0.0.x"
   },
   "optionalDependencies": {
     "lilprovider": ">= 0.0.x"

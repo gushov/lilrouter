@@ -9,28 +9,33 @@ load dist/lilrouter.js or dist/lilrouter.min.js in your browser and call it like
 ```javascript
 (function () {
 
-  var router = require('lilmodel').model;
+  var lilRouter = require('lilrouter');
 
-  var beer = model.extend({
+  var router = lilRouter.create({
 
-    defaults: {
-      sizeInLiters: 0.5,
+    init: function (router) {
+      //called on page load  
+      var session = { userId: '1231l2jl12' }
+      return session;
     },
-
-    rules: {
-      type: ['required', 'string']
-      sizeInLiters: ['required', 'number', ['gte', 0.2]]
+    get: {
+      '/': function (context, router) {
+        //context.session.userId = '1231l2jl12'
+      }
+    },
+    post: {
+      '/beer/:beerId/edit': function (context, router) {
+        //context.session.userId = '1231l2jl12'
+        //context.params.beerId = '123lkj'
+        //context.body.name = 'pils'
+      }
     }
 
   });
 
-  var dunkel = beer.create({
-    type: 'lager',
-  });
+  router.get('/');
+  router.post('/beer/123lkj/edit', { name: 'pils' });
 
-  dunkel.save(function (err) {
-    //callback from sync 
-  });
 
 }());
 ```
