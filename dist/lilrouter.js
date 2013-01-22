@@ -413,7 +413,7 @@ provide('lilrouter/win', function (require, module, exports) {
   newcap:true, noarg:true, sub:true, undef:true, boss:true,
   strict:false, eqnull:true, browser:true, node:true */
 
-var win = window;
+var win = typeof window === 'object' && window;
 
 module.exports = function (winObj) {
 

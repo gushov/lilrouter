@@ -1,10 +1,11 @@
 /*jshint curly:true, eqeqeq:true, immed:true, latedef:true,
   newcap:true, noarg:true, sub:true, undef:true, boss:true,
   strict:false, eqnull:true, browser:true, node:true */
-/*global buster, assert, refute */
+/*global assert, refute */
 
-var win = require('lilrouter/win');
-var lilRouter = require('lilrouter');
+var buster = typeof buster !== 'undefined' ? buster : require("buster");
+var win = typeof module !== 'undefined' ? require('../lib/lilrouter/win') : require('lilrouter/win');
+var lilRouter = typeof module !== 'undefined' ? require('../lib/lilrouter') : require('lilrouter');
 
 
 buster.testCase("lilrouter", {
