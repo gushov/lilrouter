@@ -1,0 +1,31 @@
+{
+  "author": "August Hovland <gushov@gmail.com>",
+  "name": "lilrouter",
+  "description": "A li'l app router for the browser",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gushov/lilrouter.git"
+  },
+  "engines": {
+    "node": ">= 0.8.x"
+  },
+  "dependencies": {
+    "lil_": ">= 0.0.x",
+    "lilobj": ">= 0.0.x"
+  },
+  "devDependencies": {
+    "grunt": ">= 0.3.x",
+    "buster": ">= 0.6.x",
+    "grunt-buster": ">= 0.1.x",
+    "grunt-mdlldr": ">= 0.1.x"
+  },
+  "optionalDependencies": {
+    "lilprovider": ">= 0.0.x"
+  },
+  "licenses": [{ "type": "MIT" }],
+  "main": "lib/lilrouter.js",
+  "scripts": {
+    "test": "grunt buster"
+  }
+}
