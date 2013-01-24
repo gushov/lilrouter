@@ -1,4 +1,4 @@
-/*! lilrouter - v0.0.3 - 2013-01-24
+/*! lilrouter - v0.0.4 - 2013-01-24
  * Copyright (c) 2013 August Hovland <gushov@gmail.com>; Licensed MIT */
 
 (function (ctx) {
@@ -194,67 +194,68 @@ module.exports = {
   },
 
   walk: function (target, source, func, fill) {
-
+ 
     var self = this;
-
+ 
     var walkObj = function (target, source) {
-
+ 
       self.each(source, function (name, obj) {
         step(target[name], obj, name, target);
       });
-
+ 
     };
-
+ 
     var step = function (target, source, name, parent) {
-
+ 
       var type = self.typeOf(source);
-
+ 
       if (type === 'object') {
-
+ 
         if (!target && parent && fill) {
           target = parent[name] = {};
         }
         
         walkObj(target, source);
-
+ 
       } else {
         func.call(parent, target, source, name);
       }
-
+ 
     };
-
+ 
     step(target, source);
-
+ 
   },
 
   extend: function () {
 
     var args = Array.prototype.slice.call(arguments);
-    var obj = args.shift();
+    var target = args.shift();
 
     this.each(args, function (src) {
 
-      this.walk(obj, src, function (target, src, name) {
-        this[name] = src;
-      }, true);
+      this.each(src, function (name, value) {
+        target[name] = value;
+      });
 
     }, this);
 
-    return obj;
+    return target;
 
   },
 
-  defaults: function (obj, defaults) {
+  defaults: function (target, defaults) {
 
-    this.walk(obj, defaults, function (target, src, name) {
+    this.each(defaults, function (name, value) {
 
-      if (!target) {
-        this[name] = src;
+      var type = this.typeOf(target[name]);
+      if (type === 'undefined' || type === 'null') {
+        target[name] = value;
       }
 
-    }, true);
+    }, this);
 
-    return obj;
+    return target;
 
   },
 
