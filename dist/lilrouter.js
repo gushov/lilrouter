@@ -1,4 +1,4 @@
-/*! lilrouter - v0.0.1 - 2013-01-22
+/*! lilrouter - v0.0.2 - 2013-01-24
  * Copyright (c) 2013 August Hovland <gushov@gmail.com>; Licensed MIT */
 
 (function (ctx) {
@@ -475,6 +475,12 @@ module.exports = function (patterns, route) {
     params = {};
     handler = func;
 
+    if (pattern.charAt(0) !== '/') {
+      patternTokens.reverse();
+      routeTokens.reverse();
+      isCountEqual = true;
+    }
+
     return isCountEqual && _.every(patternTokens, function (token, i) {
 
       if (token.indexOf(':') === 0) {
@@ -490,7 +496,6 @@ module.exports = function (patterns, route) {
 
 
     });
-    
 
   });
 
