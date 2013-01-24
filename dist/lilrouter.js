@@ -1,4 +1,4 @@
-/*! lilrouter - v0.0.2 - 2013-01-24
+/*! lilrouter - v0.0.3 - 2013-01-24
  * Copyright (c) 2013 August Hovland <gushov@gmail.com>; Licensed MIT */
 
 (function (ctx) {
@@ -546,7 +546,7 @@ module.exports = obj.extend({
 
       if (ev.state) {
         this.route(ev.state.method, this.win.location(), ev.state.body);
-      } else {
+      } else if (this.win.location() !== this.start) {
         this.route('get', this.start);
       }
 
