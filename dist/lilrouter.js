@@ -1,4 +1,4 @@
-/*! lilrouter - v0.0.4 - 2013-01-24
+/*! lilrouter - v0.0.5 - 2013-01-25
  * Copyright (c) 2013 August Hovland <gushov@gmail.com>; Licensed MIT */
 
 (function (ctx) {
@@ -457,7 +457,6 @@ var _ = require('lil_');
 
 module.exports = function (patterns, route) {
 
-  var routeTokens = _.withOut(route.split('/'), '');
   var params, handler;
 
   if (route === '/') {
@@ -471,6 +470,7 @@ module.exports = function (patterns, route) {
 
   _.some(patterns, function (pattern, func) {
 
+    var routeTokens = _.withOut(route.split('/'), '');
     var patternTokens = _.withOut(pattern.split('/'), '');
     var isCountEqual = patternTokens.length === routeTokens.length;
     params = {};
