@@ -18,6 +18,7 @@ buster.testCase("lilrouter", {
     var path1Init = this.spy();
     var path2Init = this.spy();
     var path3Init = this.spy();
+    var path4Init = this.spy();
 
     win({
       history: {
@@ -35,7 +36,8 @@ buster.testCase("lilrouter", {
       get: {
         '/': rootInit,
         '/path1/:var1': path1Init,
-        'path3/:var3': path3Init
+        'path3/:var3': path3Init,
+        '/path4/:var4a/:var4b?': path4Init
       },
       post: {
         '/path2/:var2/edit': path2Init
@@ -47,6 +49,7 @@ buster.testCase("lilrouter", {
     router.post('/path2/nuts/edit', { id: 'id' });
     router.get('/');
     router.get('/banana/bread/path3/sugar');
+    router.get('/path4/babies');
 
     assert.calledOnceWith(pageInit, router);
 
@@ -72,6 +75,12 @@ buster.testCase("lilrouter", {
     assert.calledOnceWith(path3Init, {
       session: 'test',
       params: { var3: 'sugar' },
+      body: {}
+    });
+
+    assert.calledOnceWith(path4Init, {
+      session: 'test',
+      params: { var4a: 'babies', var4b: undefined },
       body: {}
     });
 
