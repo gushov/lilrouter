@@ -1,4 +1,4 @@
-/*! lilrouter - v0.0.7 - 2013-02-08
+/*! lilrouter - v0.0.7 - 2013-02-10
  * Copyright (c) 2013 August Hovland <gushov@gmail.com>; Licensed MIT */
 
 (function (ctx) {
@@ -438,7 +438,12 @@ module.exports = function (winObj) {
     },
 
     onpopstate: function (func, ctx) {
-      win.onpopstate = func.bind(ctx);
+
+      //bind after initial page load to ignore firefox
+      setTimeout(function () {
+        win.onpopstate = func.bind(ctx);
+      }, 0);
+
     }
 
   };
@@ -556,7 +561,7 @@ module.exports = obj.extend({
 
       if (ev.state) {
         this.route(ev.state.method, this.win.location(), ev.state.body);
-      } else if (this.win.location() !== this.start) {
+      } else {
         this.route('get', this.start);
       }
 

@@ -2,7 +2,7 @@
   "author": "August Hovland <gushov@gmail.com>",
   "name": "lilrouter",
   "description": "A li'l app router for the browser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "repository": {
     "type": "git",
     "url": "git://github.com/gushov/lilrouter.git"
