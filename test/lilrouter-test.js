@@ -57,31 +57,36 @@ buster.testCase("lilrouter", {
     assert.calledWith(rootInit, {
       session: 'test',
       params: {},
-      body: {}
+      body: {},
+      pageload: true
     }, router);
 
     assert.calledOnceWith(path1Init, {
       session: 'test',
       params: { var1: 'apples' },
-      body: {}
+      body: {},
+      pageload: false
     }, router);
 
     assert.calledOnceWith(path2Init, {
       session: 'test',
       params: { var2: 'nuts' },
-      body: { id: 'id' }
+      body: { id: 'id' },
+      pageload: false
     });
 
     assert.calledOnceWith(path3Init, {
       session: 'test',
       params: { var3: 'sugar' },
-      body: {}
+      body: {},
+      pageload: false
     });
 
     assert.calledOnceWith(path4Init, {
       session: 'test',
       params: { var4a: 'babies', var4b: undefined },
-      body: {}
+      body: {},
+      pageload: false
     });
 
   }

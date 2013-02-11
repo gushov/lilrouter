@@ -1,4 +1,4 @@
-/*! lilrouter - v0.0.7 - 2013-02-10
+/*! lilrouter - v0.0.8 - 2013-02-12
  * Copyright (c) 2013 August Hovland <gushov@gmail.com>; Licensed MIT */
 
 (function (ctx) {
@@ -567,16 +567,17 @@ module.exports = obj.extend({
 
     }, this);
 
-    this.route('get', this.start);
+    this.route('get', this.start, null, true);
 
   },
 
-  route: function (method, path, body) {
+  route: function (method, path, body, pageload) {
 
     var match = matcher(this.routes[method], path);
     var ctx = _.extend({}, this.ctx, {
       params: match.params,
-      body: body || {}
+      body: body || {},
+      pageload: !!pageload
     });
 
     match.handler(ctx, this);
